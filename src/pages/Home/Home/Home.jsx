@@ -1,9 +1,12 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <div>
-          This is home  
+          <Helmet
+          title='MonArt | Home'
+          ></Helmet> 
         </div>
     );
 };
