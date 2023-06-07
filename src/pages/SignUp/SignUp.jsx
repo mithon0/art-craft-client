@@ -1,8 +1,24 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useContext } from 'react';
+
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
+
 const SignUp = () => {
+    const {signinGoogle}=useContext(AuthContext)
+
+        const googlrProvider=new GoogleAuthProvider();
+        const googleHandler=()=>{
+            signinGoogle(googlrProvider)
+            .then(result=>{
+                console.log(result.user);
+            })
+            .then(err=>{
+                console.log(err);
+            })
+        }
+
     return (
         <div>
        
@@ -48,7 +64,7 @@ const SignUp = () => {
                <div className="divider md:mx-40">OR</div>
                <p className='text-center mt-2'><small >sign in With Social Network</small></p>
                <div className='flex justify-center gap-6 mt-4 '>
-                <button className='btn btn-primary text-white rounded-full p-1'><FaGoogle className='text-4xl '/></button>
+                <button onClick={googleHandler} className='btn btn-primary text-white rounded-full p-1'><FaGoogle className='text-4xl '/></button>
                <button className='btn btn-neutral  rounded-full p-1'> <FaGithub className='text-4xl '/></button>
                </div>
             </div>
