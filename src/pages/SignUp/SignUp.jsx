@@ -1,21 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
 
 const SignUp = () => {
-    const {signinGoogle}=useContext(AuthContext)
-
+    const [showPass,setShowPass]=useState(false)
+    const {signinGoogle,signInGit,signupWithemailPass}=useContext(AuthContext)
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
         const googlrProvider=new GoogleAuthProvider();
+        const gitProvider=new GithubAuthProvider();
         const googleHandler=()=>{
             signinGoogle(googlrProvider)
             .then(result=>{
                 console.log(result.user);
             })
-            .then(err=>{
+            .catch(err=>{
                 console.log(err);
+            })
+        }
+
+        const onSubmit = data => {
+            signupWithemailPass(data.email,data.password)
+            .then(result=>{
+                console.log(result.user);
+            })
+            .catch(err=>{
+                console.log(err.message);
+            })
+        }
+        const showPasshandler =()=>{
+            if(showPass===false){
+                setShowPass(true)
+            }
+            else{
+                setShowPass(false)
+            }
+        }
+
+        const githandler =()=>{
+            signInGit(gitProvider)
+            .then(result=>{
+                console.log(result.user);
+            })
+            .catch(err=>{
+                console.log(err.message);
             })
         }
 
@@ -37,23 +68,33 @@ const SignUp = () => {
                <h1 className='text-4xl font-bold text-center'>Please Sign Up</h1> 
               
                
-               <form className=' mx-5 '>
+               <form onSubmit={handleSubmit(onSubmit)} className=' mx-5 '>
                 <div className='md:mx-40 mt-8'>
                 <label className='p-2 text-lg text-slate-500' htmlFor="name">Your Name</label><br />
-                <input className='w-full p-2 bg-slate-800  text-white rounded-xl' type="text" placeholder='Your name' />
+                <input {...register("name")} className='w-full p-2 bg-slate-800  text-white rounded-xl' type="text" placeholder='Your name' />
                 </div>
                 <div className='md:mx-40 mt-8'>
                 <label className='p-2 text-lg text-slate-500' htmlFor="photo">PhotoURL</label><br />
-                <input className='w-full p-2 bg-slate-800 text-white rounded-xl' type="text" placeholder='PhotoURL' />
+                <input {...register("photoURL")} className='w-full p-2 bg-slate-800 text-white rounded-xl' type="text" placeholder='PhotoURL' />
                 </div>
                 <div className='md:mx-40 mt-8'>
                 <label className='p-2 text-lg text-slate-500' htmlFor="email">Email</label><br />
-                <input className='w-full p-2 bg-slate-800 text-white rounded-xl' type="email" placeholder='Enter Your Email' />
+                <input  {...register("email", { required: true })} className='w-full p-2 bg-slate-800 text-white rounded-xl' type="email" placeholder='Enter Your Email' />
+                {errors.email && <span className='text-red-700'>email is required</span>}
                 </div>
                <div className='md:mx-40 mt-5'>
                <label className='px-2 text-lg text-slate-500' htmlFor="passWord">Password</label><br />
-                <input className='w-full p-2  bg-slate-800 text-white rounded-xl' type="email" placeholder='Enter PassWord' />
-                <input type="checkbox"  className="ms-2 mr-2 my-3" />
+                <input  {...register("password", {
+                     minLength: 6, 
+                    required: true,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/
+                  })} className='w-full p-2  bg-slate-800 text-white rounded-xl' type={showPass?"text":"password"} placeholder='Enter PassWord' />
+
+{errors.password?.type=== 'required' && <span className='text-red-700'>password is required</span>}
+{errors.password?.type=== 'minLength' && <span className='text-red-700'>Minimum 6 cherecter</span>}
+{errors.password?.type=== 'pattern' && <span className='text-red-700'>A capital latter and a spacial cherecter</span>} <br />
+
+                <input onClick={showPasshandler} type="checkbox"  className="ms-2 mr-2 my-3" />
                <label htmlFor="" className='text-sm text-slate-600'>Show Password</label>
                <div className='mx-auto flex justify-center'>
                <input className='btn btn-outline mb-10 mt-7 w-full p-2' type="submit" value="SignUp" />
@@ -65,7 +106,7 @@ const SignUp = () => {
                <p className='text-center mt-2'><small >sign in With Social Network</small></p>
                <div className='flex justify-center gap-6 mt-4 '>
                 <button onClick={googleHandler} className='btn btn-primary text-white rounded-full p-1'><FaGoogle className='text-4xl '/></button>
-               <button className='btn btn-neutral  rounded-full p-1'> <FaGithub className='text-4xl '/></button>
+               <button onClick={githandler} className='btn btn-neutral  rounded-full p-1'> <FaGithub className='text-4xl '/></button>
                </div>
             </div>
           </div>
