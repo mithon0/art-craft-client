@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/image/logo.png"
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Navber = () => {
+  const {user,logOut}=useContext(AuthContext);
+  console.log(user);
+
+  const logOutHandler=()=>{
+    logOut();
+  }
+
     return (
         <div className="navbar bg-base-100">
             
@@ -22,9 +30,16 @@ const Navber = () => {
         <li>
          <Link to="/">Classes</Link>
         </li>
-        <li>
-         <Link to="/"> Dashboard</Link>
-        </li>
+        {
+      user? <li >
+       
+      <Link to="/"> Dashboard</Link>
+     
+    </li>:<></>
+     }
+        {
+      user?<button onClick={logOutHandler} className='btn btn-error'>logout</button>:<></>
+     }
         
       </ul>
     </div>
@@ -51,16 +66,23 @@ const Navber = () => {
         <Link to="/">Classes</Link>
        
       </li>
-      <li >
+     {
+      user? <li >
        
-        <Link to="/"> Dashboard</Link>
+      <Link to="/"> Dashboard</Link>
+     
+    </li>:<></>
+     }
+     {
+      user?<li> <img title={user.displayName} className='w-12 p-1 rounded-full' src={user?.photoURL} alt="" /></li>: <li className='btn' >
        
-      </li>
-      <li className='btn' >
-       
-        <Link to="/login">Login</Link>
-       
-      </li>
+      <Link to="/login">Login</Link>
+     
+    </li>
+     }
+     {
+      user?<button onClick={logOutHandler} className='btn btn-error'>logout</button>:<></>
+     }
       
     </ul>
   </div>
