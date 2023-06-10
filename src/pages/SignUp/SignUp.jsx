@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [showPass, setShowPass] = useState(false);
+    
     const navigate =useNavigate();
     const { signinGoogle, signInGit, signupWithemailPass,profileUpdate } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -25,11 +26,16 @@ const SignUp = () => {
                 console.log(err);
             })
     }
+    
 
     const onSubmit = data => {
         const name=data.name;
         const photo =data.photoURL
-        signupWithemailPass(data.email, data.password)
+
+       
+           
+       
+            signupWithemailPass(data.email, data.password)
             .then(result => {
                 console.log(result.user);
                 profileUpdate(name,photo)
@@ -48,6 +54,18 @@ const SignUp = () => {
                 console.log(err.message);
                 
             })
+
+            if(data.password !== data.confirmPass){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Your pass are not matching yet!',
+            })  
+
+
+            }
+
+       
     }
     const showPasshandler = () => {
         if (showPass === false) {
@@ -111,7 +129,8 @@ const SignUp = () => {
                             {errors.password?.type === 'required' && <span className='text-red-700'>password is required</span>}
                             {errors.password?.type === 'minLength' && <span className='text-red-700'>Minimum 6 cherecter</span>}
                             {errors.password?.type === 'pattern' && <span className='text-red-700'>A capital latter and a spacial cherecter</span>} <br />
-
+                            <input  {...register("comfirmPass", { required: true })} className=' mt-4 w-full p-2 bg-slate-800 text-white rounded-xl' type={showPass ? "text" : "password"} placeholder='Confirm Password' /> 
+                            {errors.confirmPass && <span className='text-red-700'>confirm your pass</span>}<br />
                             <input onClick={showPasshandler} type="checkbox" className="ms-2 mr-2 my-3" />
                             <label htmlFor="" className='text-sm text-slate-600'>Show Password</label>
                             <div className='mx-auto flex justify-center'>
