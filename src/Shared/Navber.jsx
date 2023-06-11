@@ -25,7 +25,7 @@ const Navber = () => {
          <Link to="/">Home</Link>
         </li>
         <li>
-         <Link to="/">Instructors</Link>
+         <Link to="/instructor">Instructors</Link>
         </li>
         <li>
          <Link to="/">Classes</Link>
@@ -58,7 +58,7 @@ const Navber = () => {
       </li>
       <li >
        
-        <Link to="/">Instructors</Link>
+        <Link to="/instructor">Instructors</Link>
        
       </li>
       <li >
