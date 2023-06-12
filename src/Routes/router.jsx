@@ -9,6 +9,9 @@ import Instructors from '../pages/Instructors/Instructors';
 import Dashboard from '../Layout/Dashboard/Dashboard';
 import Users from '../pages/Users/Users';
 
+import Students from '../pages/Students/Students';
+import PrivetRoutes from './PrivetRoutes';
+
 
 const router = createBrowserRouter([
     {
@@ -31,17 +34,25 @@ const router = createBrowserRouter([
         },
         {
           path:'instructor',
-          element:<Instructors></Instructors>
+          element:<PrivetRoutes><Instructors></Instructors></PrivetRoutes>
         }
       ]
      
     },
     {
       path:'dashboard',
-      element:<Dashboard></Dashboard>,
+      element:<PrivetRoutes><Dashboard></Dashboard></PrivetRoutes>,
       children:[
         {
-          path:'dashboard/user',
+          path:'/dashboard',
+          element:<h1 className='text-center text-7xl my-40'>Wellcome To  DashBoard</h1>
+        },
+        {
+          path:'students',
+          element:<Students></Students>
+        },
+        {
+          path:'user',
           element:<Users></Users>
         }
       ]

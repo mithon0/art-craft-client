@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
+
+
 
 const Dashboard = () => {
     // todo
-    const isAdmin =true;
+    const [isAdmin,setIsAdmin]=useState(true);
+    const {user}=useContext(AuthContext)
+
+useEffect(()=>{
+    fetch(`http://localhost:5000/users/admin/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>setIsAdmin(data.admin))
+})
+     
+    // const isAdmin =true
+//    useEffect(()=>{
+//     if(users.role === 'admin'){
+//         setIsAdmin(true)
+//     }else{
+//         setIsAdmin(false)
+//     }
+//    },[isAdmin])
+    
     return (
         <div className='grid grid-cols-4'>
             <div className='col-span-3 m-10'>
@@ -15,19 +36,19 @@ const Dashboard = () => {
 
                     isAdmin? <>
                      <li>
-                        <Link to="dashboard/home">Admin Home</Link>
+                        <Link to="/dashboard">Admin Home</Link>
                     </li>
                     <li>
-                        <Link>students</Link>
+                        <Link to="/dashboard/students">students</Link>
                     </li>
                     <li>
-                        <Link to='dashboard/user'>Manage Users</Link>
+                        <Link to='/dashboard/user'>Manage Users</Link>
                     </li>
                     
                     </>:<>
                     
                     <li>
-                        <Link to="dashboard/home">Student Home</Link>
+                        <Link to="dashboard/studenthome">Student Home</Link>
                     </li>
                     <li>
                         <Link>Selected Class</Link>

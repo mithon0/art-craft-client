@@ -74,6 +74,37 @@ const Users = () => {
     
     
   }
+  const makeInstructorHandler=(id)=>{
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Make instructor!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/instructor/${id}`,{
+        method:"PATCH"
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      
+      Swal.fire(
+        'Instructor!',
+        'The User is now an Instructor',
+        'success'
+      )
+    })
+      }
+    })
+
+    
+    
+  }
     return (
         <div className="overflow-x-auto">
             <h1 className='text-center text-5xl font-bold'>Manage Users</h1>
@@ -114,7 +145,9 @@ const Users = () => {
           }
           <br />
           
-          <button disabled={disable} className="btn btn-primary btn-xs">Make Instructor</button>
+         {
+          user.role === 'instructor'?<h1 className='text-blue-500'>Instructor</h1>: <button onClick={()=>makeInstructorHandler(user._id)} disabled={disable} className="btn btn-primary btn-xs">Make Instructor</button>
+         }
         </th>
         <th>
           <button  disabled={disable} onClick={()=>handleDlete(user._id)} className="btn btn-error btn-xs">Delete</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const InstractorCard = ({i}) => {
     console.log(i);
@@ -14,7 +15,7 @@ const InstractorCard = ({i}) => {
     <p>Course: {classs}</p>
     <p>Experience: {experience}</p>
     <div className="card-actions">
-      <button className="btn btn-primary">Buy Now</button>
+      <button className="btn btn-primary"><Link to='/instructor'>Go to Instructor page</Link></button>
     </div>
   </div>
 </div>
