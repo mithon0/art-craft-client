@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ClassCard = ({c}) => {
+const ClassCard = ({c,addClassHandler}) => {
     const {image,title,description,duration,instructor,level}=c;
     return (
         <div>
@@ -13,7 +13,7 @@ const ClassCard = ({c}) => {
     <p>Instructor: {instructor}</p>
     <p>Level: {level}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">Enrol Now</button>
+      <button onClick={()=>addClassHandler(c)} className="btn btn-primary">Enrol Now</button>
     </div>
   </div>
 </div>

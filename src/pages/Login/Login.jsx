@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useForm } from "react-hook-form";
@@ -12,6 +12,11 @@ const Login = () => {
     const [showPass,setShowPass]=useState(false);
     const {signinGoogle,signInGit,login}=useContext(AuthContext);
     const { register, handleSubmit,  formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
 
     const googlrProvider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
@@ -19,6 +24,7 @@ const Login = () => {
         signinGoogle(googlrProvider)
             .then(result => {
                 console.log(result.user);
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log(err);
@@ -28,6 +34,7 @@ const Login = () => {
         signInGit(gitProvider)
             .then(result => {
                 console.log(result.user);
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.log(err.message);
@@ -46,6 +53,7 @@ const Login = () => {
                 'Your ragistration successfully',
                 'success'
               )
+              navigate(from, { replace: true });
         })
         .catch(err=>{
             console.log(err.message);

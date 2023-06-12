@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const InstractorCard = ({i}) => {
-    console.log(i);
+    // console.log(i);
     const {name,classs,experience,picture}=i
     return (
         <div>
