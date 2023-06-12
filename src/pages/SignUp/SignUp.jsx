@@ -40,26 +40,27 @@ const SignUp = () => {
                 console.log(result.user);
                 profileUpdate(name, photo)
                     .then(() => {
-                        const users = { name: data.name, email: data.email, image: data.photoUrl };
+                        const users = { name: data.name, email: data.email, image: photo };
                         fetch('http://localhost:5000/users',{
                             method:"POST",
                             headers:{
                                 'content-type': 'application/json'
                             },
-                            body:JSON.stringify(users)
+                            body: JSON.stringify(users)
                         })
                             .then(res => res.json())
                             .then(data => {
-                                if (data.insertedId) {
-                                    reset();
+                                console.log(data);
+                                if(data.insertedId){
                                     Swal.fire({
                                         position: 'top-end',
                                         icon: 'success',
-                                        title: 'User created successfully.',
+                                        title: 'Your work has been saved',
                                         showConfirmButton: false,
                                         timer: 1500
-                                    });
-                                    navigate('/');
+                                      })
+
+                                      navigate("/");
                                 }
                             })
                     })
@@ -70,15 +71,15 @@ const SignUp = () => {
 
             })
 
-        if (data.password !== data.confirmPass) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Your pass are not matching yet!',
-            })
+        // if (data.password !== data.confirmPass) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Your pass are not matching yet!',
+        //     })
 
 
-        }
+        // }
 
 
     }
