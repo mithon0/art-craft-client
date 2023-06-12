@@ -52,17 +52,7 @@ useEffect(()=>{
                     </li>
                     
                     </>:<>
-                    
-                    <li>
-                        <Link to="/dashboard">Student Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/selectedclass">Selected Class</Link>
-                    </li>
-                    <li>
-                        <Link >Enroled class</Link>
-                    </li>
-                    
+                   
                     </>
 
                    }
@@ -88,6 +78,18 @@ isInstructor? <>
                     
                     </>
 
+                   }
+
+                   {
+                    isAdmin ===false && isInstructor ===false ?<><li>
+                    <Link to="/dashboard">Student Home</Link>
+                </li>
+                <li>
+                    <Link to="/dashboard/selectedclass">Selected Class</Link>
+                </li>
+                <li>
+                    <Link >Enroled class</Link>
+                </li></>:<></>
                    }
                         <div className="divider"></div>
                         <li>
