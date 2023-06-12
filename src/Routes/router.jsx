@@ -14,6 +14,7 @@ import PrivetRoutes from './PrivetRoutes';
 import SelectedClass from '../pages/SelectedClass/SelectedClass';
 import CheckOut from '../pages/CheckOut/CheckOut';
 import AddClass from '../pages/AddClass/AddClass';
+import MyClass from '../pages/MyClass/MyClass';
 
 
 const router = createBrowserRouter([
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
         {
           path:'addclass',
           element:<AddClass></AddClass>
+        },
+        {
+          path:'myclass',
+          element:<MyClass></MyClass>
         }
       ]
     }

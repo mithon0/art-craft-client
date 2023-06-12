@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
         const {user}=useContext(AuthContext)
@@ -14,7 +15,7 @@ const AddClass = () => {
         const price =form.price.value;
         const seat =form.seat.value;
 
-        const classs ={title,image,price,seat, instructor:user.displayName }
+        const classs ={title,image,price,seat, instructor:user.displayName, email:user.email}
         console.log(classs);
 
             fetch('http://localhost:5000/class',{
@@ -90,7 +91,7 @@ const AddClass = () => {
               </div>
              
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">add</button>
               </div>
             </div>
           </div>
