@@ -6,7 +6,7 @@ const Instructors = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/instructor')
+        fetch('http://localhost:5000/users/instructor')
         .then(res=>res.json())
         .then(data=>setInstructor(data))
     },[])
@@ -35,18 +35,18 @@ const Instructors = () => {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                <img className='w-40' src={i.image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             
           </div>
         </td>
         <td>
-          Zemlak, Daniel and Leannon
+         {i.name}
           <br/>
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+          
         </td>
-        <td>Purple</td>
+        <td>{i.email}</td>
         <th>
           <button className="btn btn-ghost btn-xs">details</button>
         </th>
