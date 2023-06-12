@@ -11,6 +11,7 @@ import Users from '../pages/Users/Users';
 
 import Students from '../pages/Students/Students';
 import PrivetRoutes from './PrivetRoutes';
+import SelectedClass from '../pages/SelectedClass/SelectedClass';
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         {
           path:'user',
           element:<Users></Users>
+        },
+        {
+          path:'selectedclass',
+          element:<PrivetRoutes><SelectedClass></SelectedClass></PrivetRoutes>
         }
       ]
     }

@@ -48,10 +48,10 @@ useEffect(()=>{
                     </>:<>
                     
                     <li>
-                        <Link to="dashboard/studenthome">Student Home</Link>
+                        <Link to="/dashboard">Student Home</Link>
                     </li>
                     <li>
-                        <Link>Selected Class</Link>
+                        <Link to="/dashboard/selectedclass">Selected Class</Link>
                     </li>
                     <li>
                         <Link >Enroled class</Link>
