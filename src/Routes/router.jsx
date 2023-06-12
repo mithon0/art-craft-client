@@ -12,6 +12,8 @@ import Users from '../pages/Users/Users';
 import Students from '../pages/Students/Students';
 import PrivetRoutes from './PrivetRoutes';
 import SelectedClass from '../pages/SelectedClass/SelectedClass';
+import CheckOut from '../pages/CheckOut/CheckOut';
+import AddClass from '../pages/AddClass/AddClass';
 
 
 const router = createBrowserRouter([
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
         {
           path:'selectedclass',
           element:<PrivetRoutes><SelectedClass></SelectedClass></PrivetRoutes>
+        },
+        {
+          path:'checkout',
+          element:<CheckOut></CheckOut>
+        },
+        {
+          path:'addclass',
+          element:<AddClass></AddClass>
         }
       ]
     }

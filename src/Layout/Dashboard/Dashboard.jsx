@@ -8,12 +8,18 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Dashboard = () => {
     // todo
     const [isAdmin,setIsAdmin]=useState(true);
+    const [isInstructor,setIsInstructor]=useState(true);
     const {user}=useContext(AuthContext)
 
 useEffect(()=>{
     fetch(`http://localhost:5000/users/admin/${user.email}`)
     .then(res=>res.json())
     .then(data=>setIsAdmin(data.admin))
+})
+useEffect(()=>{
+    fetch(`http://localhost:5000/users/instructor/${user.email}`)
+    .then(res=>res.json())
+    .then(data=>setIsInstructor(data.instructor))
 })
      
     // const isAdmin =true
@@ -56,6 +62,29 @@ useEffect(()=>{
                     <li>
                         <Link >Enroled class</Link>
                     </li>
+                    
+                    </>
+
+                   }
+                   {
+
+isInstructor? <>
+                     <li>
+                        <Link to="/dashboard">Instructor Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/addclass">Add a Class</Link>
+                    </li>
+                    <li>
+                        <Link to='/dashboard/myclass'>My Classes</Link>
+                    </li>
+                    <li>
+                        <Link to='/dashboard/feedback'>FeedBack</Link>
+                    </li>
+                    
+                    </>:<>
+                    
+                    
                     
                     </>
 
