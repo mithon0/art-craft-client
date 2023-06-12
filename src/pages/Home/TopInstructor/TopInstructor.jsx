@@ -5,7 +5,7 @@ const TopInstructor = () => {
     const [instructor, setInstructor] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/instructor')
+        fetch('https://art-craft-server-side-mithon0.vercel.app/instructor')
             .then(res => res.json())
             .then(data => setInstructor(data))
     })

@@ -6,7 +6,7 @@ const MyClass = () => {
     const [myclass,setMyclass]=useState([]);
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/myclass/${user.email}`)
+        fetch(`https://art-craft-server-side-mithon0.vercel.app/myclass/${user.email}`)
         .then(res=>res.json())
         .then(data=>setMyclass(data))
     })

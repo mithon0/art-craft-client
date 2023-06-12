@@ -5,7 +5,7 @@ const Students = () => {
     const [user, setUser] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://art-craft-server-side-mithon0.vercel.app/users')
             .then(res => res.json())
             .then(data => setUser(data))
     })

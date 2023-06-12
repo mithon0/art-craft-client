@@ -17,7 +17,7 @@ const Users = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/user/${id}`,{
+          fetch(`https://art-craft-server-side-mithon0.vercel.app/user/${id}`,{
             method:"DELETE"
         })
         .then(res=>res.json())
@@ -39,7 +39,7 @@ const Users = () => {
         
     }
     useEffect(()=>{
-        fetch('http://localhost:5000/users')
+        fetch('https://art-craft-server-side-mithon0.vercel.app/users')
         .then(res=>res.json())
         .then(data=>setUsers(data))
     })
@@ -55,7 +55,7 @@ const Users = () => {
       confirmButtonText: 'Yes, Make Admin!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/admin/${id}`,{
+        fetch(`https://art-craft-server-side-mithon0.vercel.app/users/admin/${id}`,{
         method:"PATCH"
     })
     .then(res=>res.json())
@@ -86,7 +86,7 @@ const Users = () => {
       confirmButtonText: 'Yes, Make instructor!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/instructor/${id}`,{
+        fetch(`https://art-craft-server-side-mithon0.vercel.app/users/instructor/${id}`,{
         method:"PATCH"
     })
     .then(res=>res.json())

@@ -8,7 +8,7 @@ const SelectedClass = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/selectclass/${user.email}`)
+        fetch(`https://art-craft-server-side-mithon0.vercel.app/selectclass/${user.email}`)
             .then(res => res.json())
             .then(data => addCourse(data))
     })

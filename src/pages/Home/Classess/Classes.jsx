@@ -9,7 +9,7 @@ const Classes = () => {
     const { user } = useContext(AuthContext)
         
     useEffect(() => {
-        fetch("http://localhost:5000/class")
+        fetch("https://art-craft-server-side-mithon0.vercel.app/class")
             .then(res => res.json())
             .then(data => setClasses(data))
 
@@ -24,7 +24,7 @@ const Classes = () => {
         if (user?.email) {
             const selectedClass ={classId:_id,title,duration,instructor,description,image,email:user.email};
         console.log(selectedClass);
-            fetch('http://localhost:5000/selectclass',{
+            fetch('https://art-craft-server-side-mithon0.vercel.app/selectclass',{
                 method:"POST",
                 headers:{
                     'content-type': 'application/json'

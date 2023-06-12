@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
       setUser(userInfo)
       // get set token
       // if (userInfo) {
-      //   axios.post('http://localhost:5000/jwt', { email: userInfo.email })
+      //   axios.post('https://art-craft-server-side-mithon0.vercel.app/jwt', { email: userInfo.email })
       //     .then(data => {
       //       // console.log(data.data.token)
       //       localStorage.setItem('access-token',data.data.token)

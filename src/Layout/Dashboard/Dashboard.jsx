@@ -12,12 +12,12 @@ const Dashboard = () => {
     const {user}=useContext(AuthContext)
 
 useEffect(()=>{
-    fetch(`http://localhost:5000/users/admin/${user.email}`)
+    fetch(`https://art-craft-server-side-mithon0.vercel.app/users/admin/${user.email}`)
     .then(res=>res.json())
     .then(data=>setIsAdmin(data.admin))
 })
 useEffect(()=>{
-    fetch(`http://localhost:5000/users/instructor/${user.email}`)
+    fetch(`https://art-craft-server-side-mithon0.vercel.app/users/instructor/${user.email}`)
     .then(res=>res.json())
     .then(data=>setIsInstructor(data.instructor))
 })

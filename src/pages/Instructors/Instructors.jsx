@@ -6,7 +6,7 @@ const Instructors = () => {
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/users/instructor')
+        fetch('https://art-craft-server-side-mithon0.vercel.app/users/instructor')
         .then(res=>res.json())
         .then(data=>setInstructor(data))
     },[])

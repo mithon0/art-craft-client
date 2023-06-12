@@ -18,7 +18,7 @@ const AddClass = () => {
         const classs ={title,image,price,seat, instructor:user.displayName, email:user.email}
         console.log(classs);
 
-            fetch('http://localhost:5000/class',{
+            fetch('https://art-craft-server-side-mithon0.vercel.app/class',{
                 method:"POST",
                 headers:{
                     'content-type': 'application/json'

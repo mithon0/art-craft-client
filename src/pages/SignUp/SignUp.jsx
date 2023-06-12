@@ -41,7 +41,7 @@ const SignUp = () => {
                 profileUpdate(name, photo)
                     .then(() => {
                         const users = { name: data.name, email: data.email, image: photo };
-                        fetch('http://localhost:5000/users',{
+                        fetch('https://art-craft-server-side-mithon0.vercel.app/users',{
                             method:"POST",
                             headers:{
                                 'content-type': 'application/json'
