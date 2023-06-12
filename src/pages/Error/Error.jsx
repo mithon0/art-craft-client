@@ -1,9 +1,9 @@
 import React from 'react';
-
+import img from '../../assets/image/228602-P29VZB-720.jpg'
 const Error = () => {
     return (
         <div>
-            <h1>404</h1>
+          <img src={img} alt="" />
         </div>
     );
 };
